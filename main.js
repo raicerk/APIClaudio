@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 
 app.post('/suma', (req, res)=>{
     res.status(200).json({
-        "resultado": parseInt(req.body.numero1) + parseInt(req.body.numero2)
+        "resultado": parseInt(req.body.numero1) + parseInt(req.body.numero2) + parseInt(req.body.numero3)
     })
 })
 
