@@ -1,0 +1,21 @@
+{
+  "name": "apiclaudio",
+  "version": "1.0.0",
+  "description": "Esta es una api para Claudio y los participantes",
+  "main": "main.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "nodejs",
+    "apirest",
+    "expressjs",
+    "git"
+  ],
+  "author": "Todos nosotros",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
