@@ -15,6 +15,6 @@ exports.ConnectDB = () => {
         })
       })
     } catch (error) {
-      console.log(`Error en la conexion de la base de datos de mongo historico, el detalle es: ${error}`);
+      console.log(`Error en la conexion de la base de datos de mongo, el detalle es: ${error}`);
     }
   }

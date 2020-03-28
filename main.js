@@ -9,7 +9,6 @@ var app = express();
 
 dotenv.config();
 
-
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {

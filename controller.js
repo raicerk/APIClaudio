@@ -5,12 +5,14 @@ var arreglo = []
 
 exports.add = (req, res) => {
 
-    conn.collection("contactos").insertOne({
+    let contacto = {
         uuid: uuid.v4(),
         nombre: req.body.nombre,
         apellido: req.body.apellido,
         telefono: req.body.telefono
-    }, (err, response) =>{
+    }
+
+    conn.collection("contactos").insertOne(contacto, (err, response) =>{
         if (err) {
             res.status(400).json({
                 status: err
@@ -25,9 +27,11 @@ exports.add = (req, res) => {
 }
 
 exports.getAll = (req, res) => {
-    res.status(200).json({
-        personas: perso.listar(arreglo)
-    })
+    conn.collection("contactos").find({}).toArray((err,response)=>{
+        res.status(200).json({
+            personas: perso.listar(response)
+        })
+    });
 }
 
 exports.delete = (req, res) => {
