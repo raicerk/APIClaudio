@@ -47,7 +47,11 @@ exports.delete = (req, res) => {
 }
 
 exports.get = (req, res) => {
-    res.status(200).json(arreglo.filter(item => item.uuid == req.params.uuid)[0])
+    conn.collection("contactos").find({uuid: req.params.uuid}).toArray().then(result=>{
+        res.status(200).json({
+            personas: perso.listar(result)
+        })
+    });
 }
 
 exports.update = (req, res) => {
