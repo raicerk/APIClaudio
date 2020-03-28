@@ -1,5 +1,5 @@
 const uuid = require('uuid');
-const perso = require('./persona')
+const perso = require('./persona');
 
 var arreglo = []
 
