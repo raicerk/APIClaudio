@@ -31,3 +31,17 @@ exports.delete = (req, res) => {
 exports.get = (req, res) => {
     res.status(200).json(arreglo.filter(item => item.uuid == req.params.uuid)[0])
 }
+
+exports.update = (req, res) => {
+    let actualizado = {
+        uuid: arreglo.filter(item => item.uuid == req.params.uuid)[0].uuid,
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        telefono: req.body.telefono
+    }
+    arreglo = arreglo.filter(item => item.uuid != req.params.uuid)
+    arreglo.push(actualizado)
+    res.status(200).json({
+        personas: perso.listar(arreglo)
+    })
+}
