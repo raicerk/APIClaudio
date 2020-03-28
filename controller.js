@@ -55,15 +55,20 @@ exports.get = (req, res) => {
 }
 
 exports.update = (req, res) => {
-    let actualizado = {
-        uuid: arreglo.filter(item => item.uuid == req.params.uuid)[0].uuid,
-        nombre: req.body.nombre,
-        apellido: req.body.apellido,
-        telefono: req.body.telefono
-    }
-    arreglo = arreglo.filter(item => item.uuid != req.params.uuid)
-    arreglo.push(actualizado)
-    res.status(200).json({
-        personas: perso.listar(arreglo)
-    })
+
+    conn.collection("contactos").updateOne({ uuid: req.params.uuid }, { 
+        $set: {
+            nombre: req.body.nombre,
+            apellido: req.body.apellido,
+            telefono: req.body.telefono
+        }
+    }).then(response=>{
+        console.log(response.result)
+    });
+
+    conn.collection("contactos").find({}).toArray().then(result=>{
+        res.status(200).json({
+            personas: perso.listar(result)
+        })
+    }) 
 }
