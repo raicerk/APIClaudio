@@ -4,7 +4,9 @@
   "description": "Esta es una api para Claudio y los participantes",
   "main": "main.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "start": "node main.js",
+    "dev": "npx nodemon main.js"
   },
   "keywords": [
     "nodejs",
