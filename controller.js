@@ -35,10 +35,15 @@ exports.getAll = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-    arreglo = arreglo.filter(item => item.uuid != req.params.uuid)
-    res.status(200).json({
-        personas: perso.listar(arreglo)
+
+    conn.collection("contactos").deleteOne({uuid: req.params.uuid}).then(resp => {
+        console.log(resp.result)
     })
+    conn.collection("contactos").find({}).toArray().then(result=>{
+        res.status(200).json({
+            personas: perso.listar(result)
+        })
+    }) 
 }
 
 exports.get = (req, res) => {
