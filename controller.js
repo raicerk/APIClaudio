@@ -4,15 +4,24 @@ const perso = require('./persona');
 var arreglo = []
 
 exports.add = (req, res) => {
-    arreglo.push({
+
+    conn.collection("contactos").insertOne({
         uuid: uuid.v4(),
         nombre: req.body.nombre,
         apellido: req.body.apellido,
         telefono: req.body.telefono
-    })
-    res.status(201).json({
-        status: "registro agregado correctamente"
-    })
+    }, (err, response) =>{
+        if (err) {
+            res.status(400).json({
+                status: err
+            })
+        }else{
+            console.log(response.result);
+            res.status(201).json({
+                status: "registro agregado correctamente"
+            })
+        }
+    });  
 }
 
 exports.getAll = (req, res) => {

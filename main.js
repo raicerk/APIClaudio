@@ -3,9 +3,12 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 
 const control = require('./controller')
+const db = require('./db');
 
 var app = express();
+
 dotenv.config();
+
 
 app.use(bodyParser.json());
 
@@ -21,6 +24,7 @@ app.delete('/persona/:uuid', control.delete);
 app.get('/persona/:uuid', control.get);
 app.put('/persona/:uuid', control.update);
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, async () => {
   console.log(`Example app listening on port ${process.env.PORT}!`);
+  conn = await db.ConnectDB();
 });
