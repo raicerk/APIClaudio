@@ -9,11 +9,13 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.status(201).json({
-      "saludo": "hola mundo cruel"
+    "saludo": "hola mundo cruel"
   });
 });
 
-app.post('/suma', control.suma)
+app.post('/persona', control.add);
+app.get('/persona', control.getAll);
+app.delete('/persona/:uuid', control.delete);
 
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!');
