@@ -27,3 +27,7 @@ exports.delete = (req, res) => {
         personas: perso.listar(arreglo)
     })
 }
+
+exports.get = (req, res) => {
+    res.status(200).json(arreglo.filter(item => item.uuid == req.params.uuid)[0])
+}
