@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
 
 const control = require('./controller')
 
 var app = express();
+dotenv.config();
 
 app.use(bodyParser.json());
 
@@ -19,6 +21,6 @@ app.delete('/persona/:uuid', control.delete);
 app.get('/persona/:uuid', control.get);
 app.put('/persona/:uuid', control.update);
 
-app.listen(3000, () => {
-  console.log('Example app listening on port 3000!');
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening on port ${process.env.PORT}!`);
 });
