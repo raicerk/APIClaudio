@@ -11,8 +11,7 @@ exports.add = (req, res) => {
         telefono: req.body.telefono
     })
     res.status(201).json({
-        status: "registro agregado correctamente",
-        personas: perso.listar(arreglo)
+        status: "registro agregado correctamente"
     })
 }
 
