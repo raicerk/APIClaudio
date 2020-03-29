@@ -1,8 +1,6 @@
 const uuid = require('uuid');
 const perso = require('./persona');
 
-var arreglo = []
-
 exports.add = (req, res) => {
     conn.collection("contactos").insertOne({
         uuid: uuid.v4(),
