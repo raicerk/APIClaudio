@@ -2,7 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 
-const control = require('./controller')
+const person = require('./personController');
+const user = require('./userController');
+
 const db = require('./db');
 
 var app = express();
@@ -17,11 +19,12 @@ app.get('/', (req, res) => {
   });
 });
 
-app.post('/persona', control.add);
-app.get('/persona', control.getAll);
-app.delete('/persona/:uuid', control.delete);
-app.get('/persona/:uuid', control.get);
-app.put('/persona/:uuid', control.update);
+app.post('/persona', person.add);
+app.get('/persona', person.getAll);
+app.delete('/persona/:uuid', person.delete);
+app.get('/persona/:uuid', person.get);
+app.put('/persona/:uuid', person.update);
+app.post('/usuario', user.add);
 
 app.listen(process.env.PORT, async () => {
   console.log(`Example app listening on port ${process.env.PORT}!`);
