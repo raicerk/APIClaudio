@@ -9,7 +9,7 @@ exports.add = (req, res) => {
         nombre: req.body.nombre,
         apellido: req.body.apellido,
         telefono: req.body.telefono
-    }).then(resp=>{
+    }).then(resp => {
         console.log(resp.result);
         res.status(201).json({
             status: "registro agregado correctamente"
@@ -18,7 +18,7 @@ exports.add = (req, res) => {
 }
 
 exports.getAll = (req, res) => {
-    conn.collection("contactos").find({}).toArray().then(result=>{
+    conn.collection("contactos").find({}).toArray().then(result => {
         res.status(200).json({
             personas: perso.listar(result)
         })
@@ -26,19 +26,19 @@ exports.getAll = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-    conn.collection("contactos").deleteOne({uuid: req.params.uuid}).then(resp => {
+    conn.collection("contactos").deleteOne({ uuid: req.params.uuid }).then(resp => {
         console.log(resp.result)
     })
-    
-    conn.collection("contactos").find({}).toArray().then(result=>{
+
+    conn.collection("contactos").find({}).toArray().then(result => {
         res.status(200).json({
             personas: perso.listar(result)
         })
-    }) 
+    })
 }
 
 exports.get = (req, res) => {
-    conn.collection("contactos").find({uuid: req.params.uuid}).toArray().then(result=>{
+    conn.collection("contactos").find({ uuid: req.params.uuid }).toArray().then(result => {
         res.status(200).json({
             personas: perso.listar(result)
         })
@@ -46,19 +46,19 @@ exports.get = (req, res) => {
 }
 
 exports.update = (req, res) => {
-    conn.collection("contactos").updateOne({ uuid: req.params.uuid }, { 
+    conn.collection("contactos").updateOne({ uuid: req.params.uuid }, {
         $set: {
             nombre: req.body.nombre,
             apellido: req.body.apellido,
             telefono: req.body.telefono
         }
-    }).then(response=>{
+    }).then(response => {
         console.log(response.result)
     });
 
-    conn.collection("contactos").find({}).toArray().then(result=>{
+    conn.collection("contactos").find({}).toArray().then(result => {
         res.status(200).json({
             personas: perso.listar(result)
         })
-    }) 
+    })
 }
