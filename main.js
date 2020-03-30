@@ -25,6 +25,7 @@ app.delete('/persona/:uuid', person.delete);
 app.get('/persona/:uuid', person.get);
 app.put('/persona/:uuid', person.update);
 app.post('/usuario', user.add);
+app.post('/login', user.login);
 
 app.listen(process.env.PORT, async () => {
   console.log(`Example app listening on port ${process.env.PORT}!`);
