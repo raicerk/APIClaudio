@@ -1,4 +1,4 @@
-
+const secure = require('./seguridad');
 
 exports.add = (req, res) => {
 
@@ -19,8 +19,11 @@ exports.add = (req, res) => {
 exports.login = (req, res) => {
     let { usuario, contrasena } = req.body;
     conn.collection("usuarios").find({ usuario, contrasena, estado: true }).toArray().then(result => {
-        res.status(200).json({
-            result
-        })
+        if (result) {
+            const token = secure.creaToken();
+            res.status(200).json({
+                token
+            })
+        }
     });
 }

@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 
 const person = require('./personController');
 const user = require('./userController');
+const secure = require('./seguridad');
 
 const db = require('./db');
 
@@ -19,11 +20,11 @@ app.get('/', (req, res) => {
   });
 });
 
-app.post('/persona', person.add);
-app.get('/persona', person.getAll);
-app.delete('/persona/:uuid', person.delete);
-app.get('/persona/:uuid', person.get);
-app.put('/persona/:uuid', person.update);
+app.post('/persona', secure.protegida, person.add);
+app.get('/persona', secure.protegida, person.getAll);
+app.delete('/persona/:uuid', secure.protegida, person.delete);
+app.get('/persona/:uuid', secure.protegida, person.get);
+app.put('/persona/:uuid', secure.protegida, person.update);
 app.post('/usuario', user.add);
 app.post('/login', user.login);
 
